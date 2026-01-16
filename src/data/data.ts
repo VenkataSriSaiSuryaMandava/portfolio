@@ -205,7 +205,7 @@ export const projects: Project[] = [
     ],
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
     github: 'https://github.com/VenkataSriSaiSuryaMandava/portfolio',
-    demo: 'https://portfolio-venkata-sri-sai-surya-mandavas-projects.vercel.app/',
+    demo: 'https://portfolio-steel-one-10.vercel.app/',
     demoLabel: 'Live Demo',
   },
 ];

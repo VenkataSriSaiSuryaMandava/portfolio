@@ -131,7 +131,7 @@ Submit the form and you should receive an email at `CONTACT_TO`.
 This portfolio is deployed on **Vercel** with automatic CI/CD from GitHub.
 
 **Live URL:**  
-https://portfolio-venkata-sri-sai-surya-mandavas-projects.vercel.app/
+https://portfolio-steel-one-10.vercel.app/
 
 ### Deployment details
 - Platform: Vercel  

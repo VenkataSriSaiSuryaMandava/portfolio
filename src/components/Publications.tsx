@@ -29,7 +29,6 @@ export default function Publications() {
         <SectionHeading
           title="Publications"
           subtitle="Peer-reviewed papers and technical writing"
-          center
         />
       </SectionReveal>
 

@@ -212,7 +212,7 @@ function HighlightCard({
   href?: string;
   accent?: string;
 }) {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotion() ?? false;
   const content = (
     <motion.div
       data-accent={accent}

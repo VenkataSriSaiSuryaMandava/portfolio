@@ -125,3 +125,18 @@ npm run dev
 ```
 
 Submit the form and you should receive an email at `CONTACT_TO`.
+
+## 🚀 Deployment (Vercel)
+
+This portfolio is deployed on **Vercel** with automatic CI/CD from GitHub.
+
+**Live URL:**  
+https://portfolio-venkata-sri-sai-surya-mandavas-projects.vercel.app/
+
+### Deployment details
+- Platform: Vercel  
+- Framework: Next.js 16 (App Router)  
+- Build command: `npm run build`  
+- Automatic deployments on every push to `main`  
+- Environment variables managed via Vercel Dashboard  
+- Optimized with Vercel’s global edge network

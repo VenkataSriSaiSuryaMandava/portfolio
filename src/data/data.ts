@@ -196,14 +196,17 @@ export const projects: Project[] = [
     title: 'Portfolio Website',
     tagline: 'Modern, responsive portfolio with clean sections, animations, and polished UI.',
     description:
-      'A recruiter-friendly portfolio built with a component-driven architecture, consistent visual system, and smooth, accessible interactions.',
+      'A production-ready Next.js portfolio engineered for speed, clarity, and easy iteration—built with reusable sections, accessible UI patterns, and polished animation.',
     highlights: [
-      'Implemented a clean section system with reusable components and consistent spacing tokens for visual harmony across the site.',
-      'Built accessible interactions (focus states, contrast-safe surfaces) and responsive layouts for mobile/tablet/desktop.',
-      'Optimized UI motion to remain smooth and professional while respecting reduced-motion preferences.',
+      'Built a modular, data-driven section architecture so content updates require no UI rewrites (single source of truth in `data.ts`).',
+      'Implemented smooth Framer Motion transitions with reduced-motion support for accessibility and a professional feel.',
+      'Designed responsive layouts and typography scaling for mobile → desktop with consistent spacing tokens and clean visual hierarchy.',
+      'Optimized UX details (focus states, contrast-safe surfaces, semantic structure) to improve accessibility and readability.',
     ],
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
-    github: '',
+    github: 'https://github.com/VenkataSriSaiSuryaMandava/portfolio',
+    demo: 'https://portfolio-venkata-sri-sai-surya-mandavas-projects.vercel.app/',
+    demoLabel: 'Live Demo',
   },
 ];
 

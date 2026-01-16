@@ -9,7 +9,7 @@ import { FiFolder, FiLink, FiShield, FiZap } from 'react-icons/fi';
  * A compact, recruiter-friendly snapshot with subtle motion.
  */
 export default function Highlights() {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotion() ?? false;
 
   const chips = useMemo(
     () => [
@@ -249,13 +249,14 @@ function HighlightCard({
   );
 }
 
-function CountUp7Plus({ reduce }: { reduce: boolean }) {
+function CountUp7Plus({ reduce }: { reduce: boolean | null }) {
+  const reduced = !!reduce;
   const ref = useRef<HTMLSpanElement | null>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
   const [val, setVal] = useState(0);
 
   useEffect(() => {
-    if (reduce) {
+    if (reduced) {
       setVal(7);
       return;
     }
@@ -275,7 +276,7 @@ function CountUp7Plus({ reduce }: { reduce: boolean }) {
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, reduce]);
+  }, [inView, reduced]);
 
   return (
     <span ref={ref}>

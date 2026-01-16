@@ -1,0 +1,33 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A next-generation personal portfolio built with Next.js, Tailwind CSS and Framer Motion.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "16.1.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "framer-motion": "^10.16.3",
+    "tailwindcss": "^3.4.4",
+    "postcss": "^8.4.32",
+    "autoprefixer": "^10.4.16",
+    "react-icons": "^4.10.1",
+    "clsx": "^1.2.1",
+    "nodemailer": "^6.9.14"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.9",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.1.0",
+    "typescript": "^5.2.2",
+    "@types/nodemailer": "^6.4.14"
+  }
+}

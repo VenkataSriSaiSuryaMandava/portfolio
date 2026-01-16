@@ -160,7 +160,6 @@ export default function Projects() {
                   initial={reduce ? undefined : { opacity: 0, y: 8 }}
                   animate={reduce ? undefined : { opacity: 1, y: 0 }}
                   transition={{ duration: 0.25 }}
-                  data-accent={(active % 6).toString()}
                   className="card-surface card-hover shadow-sm p-6"
                 >
                   <div className="flex items-start justify-between gap-4">

@@ -1,45 +1,48 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
-/**
- * ThemeContext provides the current theme (light or dark) and a function to toggle
- * between them.  The selected theme is persisted in local storage and applied
- * to the `<html>` element via the `dark` class.
- */
 type ThemeContextValue = {
-  theme: 'light' | 'dark';
+  theme: "light" | "dark";
   toggleTheme: () => void;
 };
 
 const ThemeContext = createContext<ThemeContextValue>({
-  theme: 'light',
+  theme: "dark",
   toggleTheme: () => {},
 });
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
-  // On mount read the stored theme from localStorage and apply it.
+  // On mount, read stored theme or default to dark
   useEffect(() => {
-    const stored = typeof window !== 'undefined' ? window.localStorage.getItem('theme') : null;
-    const initial = stored === 'dark' ? 'dark' : 'light';
+    const stored =
+      typeof window !== "undefined"
+        ? window.localStorage.getItem("theme")
+        : null;
+
+    const initial = stored === "light" ? "light" : "dark";
+
     setTheme(initial);
-    document.documentElement.classList.toggle('dark', initial === 'dark');
+    document.documentElement.classList.toggle("dark", initial === "dark");
   }, []);
 
-  // Toggle the theme and persist it.
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
-    if (typeof window !== 'undefined') {
-      window.localStorage.setItem('theme', newTheme);
+
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("theme", newTheme);
     }
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
   );
 }
 

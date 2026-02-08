@@ -6,7 +6,7 @@ import SectionHeading from "@/components/SectionHeading";
 import SectionReveal from "@/components/ui/SectionReveal";
 import { certifications } from "@/data/certifications";
 
-const INITIAL_VISIBLE = 4;
+const INITIAL_VISIBLE = 3;
 
 export default function Certifications() {
   const [expanded, setExpanded] = useState(false);

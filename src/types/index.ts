@@ -68,6 +68,7 @@ export interface Publication {
 }
 
 export interface Education {
+  logo: any;
   degree: string;
   institution: string;
   start: string;

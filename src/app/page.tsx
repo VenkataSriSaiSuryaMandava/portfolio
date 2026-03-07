@@ -12,6 +12,7 @@ import Publications from "@/components/Publications";
 import Education from "@/components/Education";
 import ResumeSection from "@/components/ResumeSection";
 import Contact from "@/components/Contact";
+import PortfolioBot from "@/components/ui/PortfolioBot";
 
 export default function Home() {
   return (
@@ -19,7 +20,6 @@ export default function Home() {
       <>
         <Hero />
 
-        {/* Soft bridge to remove the hard visual break between Hero and Basic Information */}
         <div aria-hidden className="relative -mt-24 h-32 sm:h-36 md:h-40 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/70 to-transparent dark:via-black/35 blur-2xl opacity-70" />
         </div>
@@ -35,6 +35,8 @@ export default function Home() {
         <Education />
         <ResumeSection />
         <Contact />
+
+        <PortfolioBot />
       </>
     </Suspense>
   );

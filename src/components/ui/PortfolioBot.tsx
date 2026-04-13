@@ -1,7 +1,13 @@
 "use client";
 
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, FormEvent } from "react";
+
+// 1. Define the Message Type for TypeScript
+interface Message {
+  role: "bot" | "user";
+  text: string;
+}
 
 const quickActions = [
   { label: "Home", id: "home" },
@@ -17,16 +23,18 @@ export default function PortfolioBot() {
   const [open, setOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<Message[]>([
     { role: "bot", text: "System Online. ⚡ I'm Sai's AI assistant. Ask me anything or have me navigate the site for you." }
   ]);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const scrollRef = useRef(null);
+  
+  // 2. Add Type to the Ref
+  const scrollRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
 
-  // 1. Mouse Tracking Logic
+  // 3. Define MouseEvent type and fix missing variables (dx, dy, angle)
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       const dx = e.clientX - window.innerWidth / 2;
       const dy = e.clientY - window.innerHeight / 2;
       const angle = Math.atan2(dy, dx);
@@ -37,15 +45,13 @@ export default function PortfolioBot() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // 2. Chat Auto-Scroll
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isTyping]);
 
-  // 3. Reliable Scroll API
-  const scrollToSection = (id) => {
+  const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       const offset = 100; 
@@ -63,10 +69,10 @@ export default function PortfolioBot() {
     return false;
   };
 
-  // 4. Conversational Navigation Logic
-  const processQuery = async (query) => {
+  // 4. Added proper typing for query
+  const processQuery = async (query: string) => {
     const q = query.toLowerCase();
-    let responses = [];
+    let responses: string[] = [];
     let targetId = "";
 
     if (q.includes("home")) targetId = "home";
@@ -93,7 +99,8 @@ export default function PortfolioBot() {
     }
   };
 
-  const handleSend = (e) => {
+  // 5. Corrected FormEvent typing
+  const handleSend = (e: FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
     setMessages(prev => [...prev, { role: "user", text: input.trim() }]);
@@ -112,7 +119,6 @@ export default function PortfolioBot() {
             exit={{ opacity: 0, y: 20, scale: 0.9, filter: "blur(10px)" }}
             className="mb-4 flex h-[480px] w-80 flex-col overflow-hidden rounded-[2.5rem] border border-cyan-500/20 bg-gray-900/80 shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-3xl"
           >
-            {/* Header - Version Removed */}
             <div className="flex items-center justify-between border-b border-cyan-500/10 bg-cyan-500/5 p-5">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 animate-pulse rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
@@ -121,7 +127,6 @@ export default function PortfolioBot() {
               <button onClick={() => setOpen(false)} className="text-cyan-500/40 hover:text-cyan-400 transition-colors">✕</button>
             </div>
 
-            {/* Quick Actions */}
             <div className="flex gap-2 overflow-x-auto p-3 px-5 no-scrollbar border-b border-white/5 bg-black/20">
               {quickActions.map((action) => (
                 <button
@@ -137,7 +142,6 @@ export default function PortfolioBot() {
               ))}
             </div>
 
-            {/* Chat Messages */}
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-5 space-y-4 scrollbar-hide">
               {messages.map((msg, i) => (
                 <motion.div
@@ -162,7 +166,6 @@ export default function PortfolioBot() {
               )}
             </div>
 
-            {/* Input Area */}
             <form onSubmit={handleSend} className="p-4 bg-black/40 border-t border-cyan-500/20">
               <input
                 type="text"
@@ -176,7 +179,6 @@ export default function PortfolioBot() {
         )}
       </AnimatePresence>
 
-      {/* Trigger Button with "HI" Badge */}
       <motion.button
         onClick={() => setOpen(!open)}
         className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 p-[1px] shadow-[0_0_40px_rgba(34,211,238,0.3)]"
@@ -185,7 +187,6 @@ export default function PortfolioBot() {
       >
         <div className="flex h-full w-full items-center justify-center rounded-full bg-[#0a0f12]">
           <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-[#050708] border border-cyan-500/20 shadow-inner">
-            {/* Neon Cyan Eyes */}
             <div className="absolute top-3.5 flex gap-2.5">
               {[0, 1].map((i) => (
                 <motion.span
@@ -203,12 +204,10 @@ export default function PortfolioBot() {
                 />
               ))}
             </div>
-            {/* Reactive Mouth */}
             <motion.div animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ repeat: Infinity, duration: 2 }} className="absolute bottom-3.5 h-1 w-4 rounded-full bg-cyan-500/40" />
           </div>
         </div>
 
-        {/* Persistent HI Badge */}
         {!open && (
           <motion.span
             className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-cyan-400 text-[10px] font-black text-gray-950 shadow-lg shadow-cyan-400/50"
